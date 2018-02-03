@@ -27,8 +27,10 @@ public class CategoriaResource {
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
 		Categoria categoria = categoriaService.buscar(id);
-		for (Produto p : categoria.getProdutos()) {
-			System.out.println(p.getNome());
+		if(categoria!=null) {
+			for (Produto p : categoria.getProdutos()) {
+				System.out.println(p.getNome());
+			}
 		}
 		
 		/*Categoria cat1 = new Categoria(1, "Informática");
