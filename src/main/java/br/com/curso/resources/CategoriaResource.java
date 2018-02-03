@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.curso.domain.Categoria;
+import br.com.curso.domain.Produto;
 import br.com.curso.repositories.services.CategoriaService;
 
 @RestController
@@ -26,6 +27,9 @@ public class CategoriaResource {
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
 		Categoria categoria = categoriaService.buscar(id);
+		for (Produto p : categoria.getProdutos()) {
+			System.out.println(p.getNome());
+		}
 		
 		/*Categoria cat1 = new Categoria(1, "Informática");
 		Categoria cat2 = new Categoria(2, "Escritório");
