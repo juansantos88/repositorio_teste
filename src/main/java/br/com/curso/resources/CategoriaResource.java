@@ -27,13 +27,14 @@ public class CategoriaResource {
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		
 		Categoria categoria = categoriaService.buscar(id);
-		if(categoria!=null) {
+		
+		/*if(categoria!=null) {
 			for (Produto p : categoria.getProdutos()) {
 				System.out.println(p.getNome());
 			}
 		}
 		
-		/*Categoria cat1 = new Categoria(1, "Informática");
+		Categoria cat1 = new Categoria(1, "Informática");
 		Categoria cat2 = new Categoria(2, "Escritório");
 		List<Categoria> lista = Arrays.asList(cat1,cat2);*/
 		

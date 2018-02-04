@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import br.com.curso.repositories.services.exceptions.ErrorInternalException;
 import br.com.curso.repositories.services.exceptions.ObjectNotFoundException;
 
 
@@ -20,6 +21,13 @@ public class ResourceExceptionHandler {
 		
 	}
 	
+	
+	@ExceptionHandler(ErrorInternalException.class)
+	public ResponseEntity<StandardError> errorInternal(ErrorInternalException e , HttpServletRequest request){
+		StandardError erro = new StandardError(HttpStatus.INTERNAL_SERVER_ERROR.value(),e.getMessage(),System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erro);
+		
+	}
 	
 
 }
