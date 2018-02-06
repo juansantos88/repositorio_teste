@@ -8,9 +8,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.curso.domain.Cidade;
+import br.com.curso.domain.Cliente;
+import br.com.curso.domain.Endereco;
 import br.com.curso.domain.Estado;
+import br.com.curso.domain.enums.TipoClienteEnum;
 import br.com.curso.repositories.CategoriaRepository;
 import br.com.curso.repositories.CidadeRepository;
+import br.com.curso.repositories.ClienteRepository;
+import br.com.curso.repositories.EnderecoRepository;
 import br.com.curso.repositories.EstadoRepository;
 import br.com.curso.repositories.ProdutoRepository;
 
@@ -29,6 +34,12 @@ public class CursoUdemyApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursoUdemyApplication.class, args);
@@ -55,7 +66,7 @@ public class CursoUdemyApplication implements CommandLineRunner{
 		
 		produtoRepository.save(Arrays.asList(p1,p2,p3));*/
 		
-		Estado estado1 = new Estado(null,"Minas Gerais");
+		/*Estado estado1 = new Estado(null,"Minas Gerais");
 		Estado estado2 = new Estado(null,"São Paulo");
 		
 		Cidade cidade1 = new Cidade(null,"Uberlândia",estado1);
@@ -67,7 +78,21 @@ public class CursoUdemyApplication implements CommandLineRunner{
 		
 		estadoRepository.save(Arrays.asList(estado1,estado2));
 		
-		cidadeRepository.save(Arrays.asList(cidade1,cidade2,cidade3));
+		cidadeRepository.save(Arrays.asList(cidade1,cidade2,cidade3));*/
+		
+		Cidade cidade1 = cidadeRepository.findOne(1);
+		Cidade cidade2 = cidadeRepository.findOne(2);
+		
+		Cliente cliente1 = new Cliente(null, "Juan Carlos", "juan@gmail.com", "01383281459", TipoClienteEnum.PESSO_FISICA);
+		cliente1.getTelefones().addAll(Arrays.asList("88778899","88445522"));
+		
+		Endereco endereco1 = new Endereco(null, "Rua Abc", "123", "sem complemento", "Mangabeira", "78945612", cliente1, cidade1);
+		Endereco endereco2 = new Endereco(null, "Rua Cde", "123", "sem complemento", "Cristo", "78945612", cliente1, cidade2);
+		
+		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
+		
+		clienteRepository.save(cliente1);
+		enderecoRepository.save(Arrays.asList(endereco1,endereco2));
 		
 		
 	}
