@@ -2,7 +2,7 @@ package br.com.curso.domain.enums;
 
 public enum TipoClienteEnum {
 	
-	PESSO_FISICA(1,"Pessoa Física"),
+	PESSOA_FISICA(1,"Pessoa Física"),
 	PESSOA_JURIDICA(2,"Pessoa Jurídica");
 	
 	private Integer codigo;

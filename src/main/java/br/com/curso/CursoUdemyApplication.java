@@ -80,7 +80,7 @@ public class CursoUdemyApplication implements CommandLineRunner{
 		
 		cidadeRepository.save(Arrays.asList(cidade1,cidade2,cidade3));*/
 		
-		Cidade cidade1 = cidadeRepository.findOne(1);
+		/*Cidade cidade1 = cidadeRepository.findOne(1);
 		Cidade cidade2 = cidadeRepository.findOne(2);
 		
 		Cliente cliente1 = new Cliente(null, "Juan Carlos", "juan@gmail.com", "01383281459", TipoClienteEnum.PESSO_FISICA);
@@ -92,7 +92,7 @@ public class CursoUdemyApplication implements CommandLineRunner{
 		cliente1.getEnderecos().addAll(Arrays.asList(endereco1, endereco2));
 		
 		clienteRepository.save(cliente1);
-		enderecoRepository.save(Arrays.asList(endereco1,endereco2));
+		enderecoRepository.save(Arrays.asList(endereco1,endereco2));*/
 		
 		
 	}
