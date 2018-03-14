@@ -3,21 +3,21 @@ package br.com.curso.repositories.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.curso.domain.Cliente;
-import br.com.curso.repositories.ClienteRepository;
+import br.com.curso.domain.Pedido;
+import br.com.curso.repositories.PedidoRepository;
 import br.com.curso.repositories.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class ClienteService {
+public class PedidoService {
 	
 	@Autowired
-	private ClienteRepository repo;
+	private PedidoRepository repo;
 	
-	public Cliente buscar(Integer id) {
-		Cliente obj = repo.findOne(id);
+	public Pedido buscar(Integer id) {
+		Pedido obj = repo.findOne(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
-					+ ", Tipo: " + Cliente.class.getName());
+					+ ", Tipo: " + Pedido.class.getName());
 		}
 		return obj;
 	}

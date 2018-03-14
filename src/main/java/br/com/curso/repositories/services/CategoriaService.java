@@ -5,27 +5,26 @@ import org.springframework.stereotype.Service;
 
 import br.com.curso.domain.Categoria;
 import br.com.curso.repositories.CategoriaRepository;
-import br.com.curso.repositories.services.exceptions.ErrorInternalException;
 import br.com.curso.repositories.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
-
+	
 	@Autowired
-	private CategoriaRepository categoriaRepository;
-
+	private CategoriaRepository repo;
+	
 	public Categoria buscar(Integer id) {
-		Categoria obj = null;
-		try {
-			obj = categoriaRepository.findOne(id);
-			if(obj == null) {
-				throw new ObjectNotFoundException("Objeto não encontrado: " + id);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new ErrorInternalException("Erro Interno.");
+		Categoria obj = repo.findOne(id);
+		if (obj == null) {
+			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
+					+ ", Tipo: " + Categoria.class.getName());
 		}
 		return obj;
 	}
+	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+
 }
